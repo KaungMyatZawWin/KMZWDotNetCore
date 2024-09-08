@@ -16,18 +16,27 @@ Console.WriteLine("Connection opened");
 
 string queryString = "select * from Tbl_Blog where DeleteFlag = 0 ";
 SqlCommand cmd = new SqlCommand(queryString,connection);
-SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-DataTable dt = new DataTable();
-adapter.Fill(dt);
+//SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+//DataTable dt = new DataTable();
+//adapter.Fill(dt);
+
+SqlDataReader reader = cmd.ExecuteReader();
+while (reader.Read())
+{
+    Console.WriteLine("BlogId: " + reader["BlogId"]);
+    Console.WriteLine("Blog Aurthor: " + reader["BlogAurthor"]);
+    Console.WriteLine("Blog Title: " + reader["BlogTitle"]);
+    Console.WriteLine("Blog Content: " + reader["BlogContent"]);
+}
 
 Console.WriteLine("Connection is closing....");
 connection.Close();
 Console.WriteLine("Connection was closed!");
 
-foreach (DataRow dr in dt.Rows)
-{
-   Console.WriteLine("Blog Id: " + dr["BlogId"]);
-   Console.WriteLine("Blog Aruthor: " + dr["BlogAurthor"]);
-    Console.WriteLine("Blog Title: " + dr["BlogTitle"]);
-    Console.WriteLine("Blog Content: " + dr["BlogContent"]);
-}
+//foreach (DataRow dr in dt.Rows)
+//{
+//   Console.WriteLine("Blog Id: " + dr["BlogId"]);
+//   Console.WriteLine("Blog Aruthor: " + dr["BlogAurthor"]);
+//    Console.WriteLine("Blog Title: " + dr["BlogTitle"]);
+//    Console.WriteLine("Blog Content: " + dr["BlogContent"]);
+//}
