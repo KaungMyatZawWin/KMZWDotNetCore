@@ -17,6 +17,51 @@ namespace KMZWDotNetCore.ConsoleApp
             Password = "sasa@123"
         };
 
+        public void Create()
+        {
+
+            Console.Write("Enter BlogAuthor: ");
+            string blogAuthor = Console.ReadLine();
+
+            Console.Write("Enter Blog Title: ");
+            string blogTitle = Console.ReadLine();
+
+            Console.Write("Enter Blog Content: ");
+            string blogContent = Console.ReadLine();
+
+            Console.Write("Want to delete? Please type 0 or 1 : ");
+            string isDelete = Console.ReadLine();
+
+            SqlConnection connection = new SqlConnection(_sqlConnectionStringBuilder.ConnectionString);
+            connection.Open();
+            Console.WriteLine("Connection is open.");
+
+            string queryString = @"INSERT INTO [dbo].[Tbl_Blog]
+                   ([BlogAuthor]
+                   ,[BlogTitle]
+                   ,[BlogContent]
+                   ,[DeleteFlag])
+             VALUES
+                   (@BlogAuthor
+                   ,@BlogTitle
+                   ,@BlogContent
+                   ,@DeleteFlag)";
+
+            SqlCommand cmd = new SqlCommand(queryString, connection);
+            cmd.Parameters.AddWithValue("@BlogAuthor", blogAuthor);
+            cmd.Parameters.AddWithValue("@BlogTitle", blogTitle);
+            cmd.Parameters.AddWithValue("@BlogContent", blogContent);
+            cmd.Parameters.AddWithValue("@DeleteFlag", isDelete);
+
+            var result = cmd.ExecuteNonQuery();
+
+            connection.Close();
+            Console.WriteLine("Connection was closed!");
+
+            var message = result > 0 ? "Successfully Created Blog." : "Failed to Create!";
+            Console.WriteLine(message);
+        }
+
         public void Read()
         {
             SqlConnection connection = new SqlConnection(_sqlConnectionStringBuilder.ConnectionString);
@@ -86,50 +131,27 @@ namespace KMZWDotNetCore.ConsoleApp
 
         }
 
-        public void Create()
+        public void Delete()
         {
-
-            Console.Write("Enter BlogAuthor: ");
-            string blogAuthor = Console.ReadLine();
-
-            Console.Write("Enter Blog Title: ");
-            string blogTitle = Console.ReadLine();
-
-            Console.Write("Enter Blog Content: ");
-            string blogContent = Console.ReadLine();
-
-            Console.Write("Want to delete? Please type 0 or 1 : ");
-            string isDelete = Console.ReadLine();
+            Console.Write("Enter Blog Id you want to delete :");
+            string blogIdStr = Console.ReadLine()!;
+            int blogId = int.Parse(blogIdStr);
 
             SqlConnection connection = new SqlConnection(_sqlConnectionStringBuilder.ConnectionString);
             connection.Open();
-            Console.WriteLine("Connection is open.");
+            Console.WriteLine("Connection is Open.");
 
-            string queryString = @"INSERT INTO [dbo].[Tbl_Blog]
-                   ([BlogAuthor]
-                   ,[BlogTitle]
-                   ,[BlogContent]
-                   ,[DeleteFlag])
-             VALUES
-                   (@BlogAuthor
-                   ,@BlogTitle
-                   ,@BlogContent
-                   ,@DeleteFlag)";
-
+            string queryString = @"DELETE FROM [dbo].[Tbl_Blog]
+                WHERE BlogId = @BlogId";
             SqlCommand cmd = new SqlCommand(queryString, connection);
-            cmd.Parameters.AddWithValue("@BlogAuthor", blogAuthor);
-            cmd.Parameters.AddWithValue("@BlogTitle", blogTitle);
-            cmd.Parameters.AddWithValue("@BlogContent", blogContent);
-            cmd.Parameters.AddWithValue("@DeleteFlag", isDelete);
-
-            var result = cmd.ExecuteNonQuery();
+            cmd.Parameters.AddWithValue("@BlogId", blogId);
+            int result = cmd.ExecuteNonQuery();
 
             connection.Close();
-            Console.WriteLine("Connection was closed!");
+            Console.WriteLine("Connection was Close!");
 
-            var message = result > 0 ? "Successfully Created Blog." : "Failed to Create!";
+            string message = result > 0 ? "Successfully Deleted." : "Failed to Delete!";
             Console.WriteLine(message);
         }
-
     }
 }
