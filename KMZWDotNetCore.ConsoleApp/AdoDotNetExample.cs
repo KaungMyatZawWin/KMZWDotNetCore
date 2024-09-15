@@ -17,6 +17,7 @@ namespace KMZWDotNetCore.ConsoleApp
             Password = "sasa@123"
         };
 
+        #region CreateMethod
         public void Create()
         {
 
@@ -61,7 +62,9 @@ namespace KMZWDotNetCore.ConsoleApp
             var message = result > 0 ? "Successfully Created Blog." : "Failed to Create!";
             Console.WriteLine(message);
         }
+        #endregion
 
+        #region ReadMethod
         public void Read()
         {
             SqlConnection connection = new SqlConnection(_sqlConnectionStringBuilder.ConnectionString);
@@ -85,7 +88,9 @@ namespace KMZWDotNetCore.ConsoleApp
             connection.Close();
             Console.WriteLine("Connection was closed!");
         }
+        #endregion
 
+        #region UpdateMethod
         public void Update()
         {
             Console.Write("Enter BlogId: ");
@@ -130,7 +135,9 @@ namespace KMZWDotNetCore.ConsoleApp
             Console.WriteLine(message);
 
         }
+        #endregion
 
+        #region DeleteMethod
         public void Delete()
         {
             Console.Write("Enter Blog Id you want to delete :");
@@ -153,5 +160,6 @@ namespace KMZWDotNetCore.ConsoleApp
             string message = result > 0 ? "Successfully Deleted." : "Failed to Delete!";
             Console.WriteLine(message);
         }
+        #endregion
     }
 }
