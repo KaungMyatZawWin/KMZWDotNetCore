@@ -37,7 +37,8 @@ using System.Data.SqlClient;
 
 AdoDotNetExample adoDotNetExample = new AdoDotNetExample();
 //adoDotNetExample.Read();
-adoDotNetExample.Update();
+//adoDotNetExample.Update();
+adoDotNetExample.Create();
 
 
 

@@ -86,5 +86,50 @@ namespace KMZWDotNetCore.ConsoleApp
 
         }
 
+        public void Create()
+        {
+
+            Console.Write("Enter BlogAuthor: ");
+            string blogAuthor = Console.ReadLine();
+
+            Console.Write("Enter Blog Title: ");
+            string blogTitle = Console.ReadLine();
+
+            Console.Write("Enter Blog Content: ");
+            string blogContent = Console.ReadLine();
+
+            Console.Write("Want to delete? Please type 0 or 1 : ");
+            string isDelete = Console.ReadLine();
+
+            SqlConnection connection = new SqlConnection(_sqlConnectionStringBuilder.ConnectionString);
+            connection.Open();
+            Console.WriteLine("Connection is open.");
+
+            string queryString = @"INSERT INTO [dbo].[Tbl_Blog]
+                   ([BlogAuthor]
+                   ,[BlogTitle]
+                   ,[BlogContent]
+                   ,[DeleteFlag])
+             VALUES
+                   (@BlogAuthor
+                   ,@BlogTitle
+                   ,@BlogContent
+                   ,@DeleteFlag)";
+
+            SqlCommand cmd = new SqlCommand(queryString, connection);
+            cmd.Parameters.AddWithValue("@BlogAuthor", blogAuthor);
+            cmd.Parameters.AddWithValue("@BlogTitle", blogTitle);
+            cmd.Parameters.AddWithValue("@BlogContent", blogContent);
+            cmd.Parameters.AddWithValue("@DeleteFlag", isDelete);
+
+            var result = cmd.ExecuteNonQuery();
+
+            connection.Close();
+            Console.WriteLine("Connection was closed!");
+
+            var message = result > 0 ? "Successfully Created Blog." : "Failed to Create!";
+            Console.WriteLine(message);
+        }
+
     }
 }
