@@ -36,5 +36,9 @@ using System.Data.SqlClient;
 //Console.WriteLine("Connection was closed!");
 
 AdoDotNetExample adoDotNetExample = new AdoDotNetExample();
-adoDotNetExample.Read();
+//adoDotNetExample.Read();
+adoDotNetExample.Update();
+
+
+
 
