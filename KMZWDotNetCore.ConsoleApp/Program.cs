@@ -43,7 +43,8 @@ using System.Data.SqlClient;
 //adoDotNetExample.Edit();
 
 DapperExample dapperExample = new DapperExample();
-dapperExample.Read();
+//dapperExample.Read();
+dapperExample.Create();
 
 
 
