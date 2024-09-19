@@ -35,12 +35,15 @@ using System.Data.SqlClient;
 //connection.Close();
 //Console.WriteLine("Connection was closed!");
 
-AdoDotNetExample adoDotNetExample = new AdoDotNetExample();
+//AdoDotNetExample adoDotNetExample = new AdoDotNetExample();
 //adoDotNetExample.Read();
 //adoDotNetExample.Update();
 //adoDotNetExample.Create();
 //adoDotNetExample.Delete();
-adoDotNetExample.Edit();
+//adoDotNetExample.Edit();
+
+DapperExample dapperExample = new DapperExample();
+dapperExample.Read();
 
 
 
