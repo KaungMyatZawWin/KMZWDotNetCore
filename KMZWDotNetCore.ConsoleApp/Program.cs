@@ -39,7 +39,8 @@ AdoDotNetExample adoDotNetExample = new AdoDotNetExample();
 //adoDotNetExample.Read();
 //adoDotNetExample.Update();
 //adoDotNetExample.Create();
-adoDotNetExample.Delete();
+//adoDotNetExample.Delete();
+adoDotNetExample.Edit();
 
 
 

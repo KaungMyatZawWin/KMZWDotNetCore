@@ -161,5 +161,34 @@ namespace KMZWDotNetCore.ConsoleApp
             Console.WriteLine(message);
         }
         #endregion
+
+        #region EditMethod
+        public void Edit()
+        {
+            SqlConnection connection = new SqlConnection(_sqlConnectionStringBuilder.ConnectionString);
+            connection.Open();
+            Console.WriteLine("Connection is open.");
+
+            Console.Write("Enter BlogId To Edit:");
+            string blogIdStr = Console.ReadLine()!;
+            int blogId = int.Parse(blogIdStr);
+
+            string queryString = "select * from [dbo].[Tbl_Blog] where BlogId= @BlogId";
+            SqlCommand cmd = new SqlCommand(queryString, connection);
+            cmd.Parameters.AddWithValue("@BlogId", blogId);
+            SqlDataReader reader = cmd.ExecuteReader(); ;
+
+            while (reader.Read())
+            {
+                Console.WriteLine("Blog Id : " + reader["BlogId"]);
+                Console.WriteLine("Blog Author : " + reader["BlogAuthor"]);
+                Console.WriteLine("Blog Title : " + reader["BlogTitle"]);
+                Console.WriteLine("Blog Content : " + reader["BlogContent"]);
+            }
+
+            connection.Close();
+            Console.WriteLine("Connection was closed!");
+        }
+        #endregion
     }
 }
