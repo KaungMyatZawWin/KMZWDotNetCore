@@ -80,6 +80,7 @@ namespace KMZWDotNetCore.ConsoleApp
         }
         #endregion
 
+        #region UpdateMethod
         public void Update()
         {
 
@@ -121,5 +122,36 @@ namespace KMZWDotNetCore.ConsoleApp
             }
 
         }
+        #endregion
+
+        #region DeleteMethod
+        public void Delete()
+        {
+            using (IDbConnection db = new SqlConnection(_sqlConnectionStringBuilder.ConnectionString))
+            {
+                Console.Write("Enter BlogId to Find Blog to Delete:");
+                string intStr = Console.ReadLine()!;
+                int blogId = int.Parse(intStr);
+
+                string findQuery = "select * from Tbl_Blog where @BlogId = blogId";
+
+                var foundBlog = db.QueryFirstOrDefault<BlogDataModel>(findQuery, new { BlogId = blogId });
+                if (foundBlog is null)
+                {
+                    Console.WriteLine("Can't find blog to Delete!");
+                    return;
+                }
+
+                string query = @"DELETE FROM [dbo].[Tbl_Blog]
+                    WHERE BlogId = @BlogId";
+
+                int model = db.Execute(query, new { BlogId = blogId });
+                string result = model == 1 ? "Successfully Delete Blog." : "Failed to Delete!";
+                Console.WriteLine(result);
+            }
+        }
+        #endregion
+
+        
     }
 }
