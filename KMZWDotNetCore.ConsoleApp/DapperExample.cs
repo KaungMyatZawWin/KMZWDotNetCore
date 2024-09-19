@@ -43,6 +43,7 @@ namespace KMZWDotNetCore.ConsoleApp
         }
         #endregion
 
+        #region CreateMethod
         public void Create()
         {
             using (IDbConnection db = new SqlConnection(_sqlConnectionStringBuilder.ConnectionString))
@@ -74,6 +75,49 @@ namespace KMZWDotNetCore.ConsoleApp
                 Console.WriteLine(result);
 
 
+            }
+
+        }
+        #endregion
+
+        public void Update()
+        {
+
+            using (IDbConnection db = new SqlConnection(_sqlConnectionStringBuilder.ConnectionString))
+            {
+                Console.Write("Enter BlogId to Find Blog to Update:");
+                string intStr = Console.ReadLine()!;
+                int blogId = int.Parse(intStr);
+
+                string findQuery = "select * from Tbl_Blog where @BlogId = blogId";
+
+                var foundBlog = db.QueryFirstOrDefault<BlogDataModel>(findQuery, new { BlogId = blogId });
+                if (foundBlog is null)
+                {
+                    Console.WriteLine("Can't find blog to update!");
+                    return;
+                }
+
+                Console.Write("Enter Author Name: ");
+                string authorName = Console.ReadLine()!;
+                Console.Write("Enter Blog Title: ");
+                string blogTitle = Console.ReadLine()!;
+                Console.Write("Enter Blog Content: ");
+                string blogContent = Console.ReadLine()!;
+                Console.WriteLine("Are you Published or Draft , Type only 1 or 0 :");
+                string deleteStr = Console.ReadLine()!;
+                int isDelete = int.Parse(deleteStr);
+
+                string query = @"UPDATE [dbo].[Tbl_Blog]
+                       SET [BlogAuthor] = @BlogAuthor
+                          ,[BlogTitle] = @BlogTitle
+                          ,[BlogContent] = @BlogContent
+                          ,[DeleteFlag] = @DeleteFlag
+                     WHERE BlogId = @BlogId";
+
+                int model = db.Execute(query, new { BlogId = blogId, BlogAuthor = authorName, BlogTitle = blogTitle, BlogContent = blogContent, DeleteFlag = isDelete });
+                string result = model == 1 ? "Successfully Update blog. " : "Failed to Update!";
+                Console.WriteLine(result);
             }
 
         }

@@ -44,7 +44,8 @@ using System.Data.SqlClient;
 
 DapperExample dapperExample = new DapperExample();
 //dapperExample.Read();
-dapperExample.Create();
+//dapperExample.Create();
+dapperExample.Update();
 
 
 
