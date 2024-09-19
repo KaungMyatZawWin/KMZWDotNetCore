@@ -46,7 +46,8 @@ DapperExample dapperExample = new DapperExample();
 //dapperExample.Read();
 //dapperExample.Create();
 //dapperExample.Update();
-dapperExample.Delete();
+//dapperExample.Delete();
+dapperExample.Edit();
 
 
 

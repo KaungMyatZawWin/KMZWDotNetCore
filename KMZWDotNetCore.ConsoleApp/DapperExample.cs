@@ -152,6 +152,38 @@ namespace KMZWDotNetCore.ConsoleApp
         }
         #endregion
 
-        
+        #region EditMethod
+        public void Edit()
+        {
+            using (IDbConnection db = new SqlConnection(_sqlConnectionStringBuilder.ConnectionString))
+            {
+                Console.Write("Enter BlogId to Find Blog to Edit:");
+                string intStr = Console.ReadLine()!;
+                int blogId = int.Parse(intStr);
+
+                string findQuery = "select * from Tbl_Blog where @BlogId = blogId";
+
+                var foundBlog = db.QueryFirstOrDefault<BlogDataModel>(findQuery, new { BlogId = blogId });
+                if (foundBlog is null)
+                {
+                    Console.WriteLine("Can't find blog to Edit!");
+                    return;
+                }
+
+                string query = "select * from Tbl_Blog where BlogId = @BlogId";
+
+                var model = db.QueryFirstOrDefault<BlogDataModel>(query, new { BlogId = blogId });
+
+                Console.WriteLine("---------------------------------------------");
+                Console.WriteLine("BlogId : " + model.BlogId);
+                Console.WriteLine("BlogAuthor : " + model.BlogAuthor);
+                Console.WriteLine("BlogTitle : " + model.BlogTitle);
+                Console.WriteLine("BlogContent : " + model.BlogContent);
+                Console.WriteLine("DeleteFlag : " + model.DeleteFlag);
+                Console.WriteLine("---------------------------------------------");
+
+            };
+        }
+        #endregion
     }
 }
