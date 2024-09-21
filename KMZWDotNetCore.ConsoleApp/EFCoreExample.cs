@@ -143,6 +143,28 @@ namespace KMZWDotNetCore.ConsoleApp
         }
         #endregion
 
+        public void Delete()
+        {
+            Console.Write("Enter BlogId to Find Blog to Delete:");
+            string intStr = Console.ReadLine()!;
+            int blogId = int.Parse(intStr);
 
+            EFCoreDataModel eFCoreDataModel = new EFCoreDataModel
+            { BlogId = blogId };
+
+            AppDbContext db = new AppDbContext();
+            var model = db.Blogs.AsNoTracking().FirstOrDefault(x => x.BlogId == eFCoreDataModel.BlogId);
+
+            if (model is null)
+            {
+                Console.WriteLine("Blogs not found!");
+                return;
+            }
+
+            db.Entry(model).State = EntityState.Deleted;
+            int resp = db.SaveChanges();
+            string result = resp == 1 ? "Successfully Deleted. " : "Failed to Delete!";
+            Console.WriteLine(result);
+        }
     }
 }

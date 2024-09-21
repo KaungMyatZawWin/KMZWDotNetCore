@@ -53,7 +53,8 @@ EFCoreExample efcoreExample = new EFCoreExample();
 //efcoreExample.Read();
 //efcoreExample.Create();
 //efcoreExample.Edit();
-efcoreExample.Update();
+//efcoreExample.Update();
+efcoreExample.Delete();
 
 
 
