@@ -56,5 +56,36 @@ namespace KMZWDotNetCore.ConsoleApp
             Console.WriteLine(result);
         }
         #endregion
+
+        #region EditMethod
+        public void Edit()
+        {
+            Console.Write("Enter BlogId to Find Blog to Edit:");
+            string intStr = Console.ReadLine()!;
+            int blogId = int.Parse(intStr);
+
+            EFCoreDataModel eFCoreDataModel = new EFCoreDataModel
+            { BlogId = blogId };
+
+            AppDbContext db = new AppDbContext();
+            var model = db.Blogs.FirstOrDefault(x => x.BlogId == eFCoreDataModel.BlogId);
+
+            if (model is null)
+            {
+                Console.WriteLine("Blogs not found!");
+                return;
+            }
+
+            Console.WriteLine("---------------------------------------------");
+            Console.WriteLine("BlogId : " + model.BlogId);
+            Console.WriteLine("BlogAuthor : " + model.BlogAuthor);
+            Console.WriteLine("BlogTitle : " + model.BlogTitle);
+            Console.WriteLine("BlogContent : " + model.BlogContent);
+            Console.WriteLine("DeleteFlag : " + model.DeleteFlag);
+            Console.WriteLine("---------------------------------------------");
+        }
+        #endregion
+
+       
     }
 }
