@@ -52,7 +52,8 @@ using System.Data.SqlClient;
 EFCoreExample efcoreExample = new EFCoreExample();
 //efcoreExample.Read();
 //efcoreExample.Create();
-efcoreExample.Edit();
+//efcoreExample.Edit();
+efcoreExample.Update();
 
 
 

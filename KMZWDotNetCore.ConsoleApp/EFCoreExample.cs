@@ -1,4 +1,5 @@
 ﻿using KMZWDotNetCore.ConsoleApp.Model;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -86,6 +87,62 @@ namespace KMZWDotNetCore.ConsoleApp
         }
         #endregion
 
-       
+        #region UpdateMethod
+        public void Update()
+        {
+            Console.Write("Enter BlogId to Find Blog to Update :");
+            string intStr = Console.ReadLine()!;
+            int blogId = int.Parse(intStr);
+
+            EFCoreDataModel eFCoreDataModel = new EFCoreDataModel
+            { BlogId = blogId };
+
+            AppDbContext db = new AppDbContext();
+            var model = db.Blogs.AsNoTracking().FirstOrDefault(x => x.BlogId == blogId);
+
+            if (model is null)
+            {
+                Console.WriteLine("Blogs not found!");
+                return;
+            }
+
+            Console.Write("Enter Author Name: ");
+            string authorName = Console.ReadLine()!;
+            Console.Write("Enter Blog Title: ");
+            string blogTitle = Console.ReadLine()!;
+            Console.Write("Enter Blog Content: ");
+            string blogContent = Console.ReadLine()!;
+            Console.Write("Are you Published or Draft , Type only 0 or 1 (0 is publish) :");
+            string deleteStr = Console.ReadLine()!;
+            int isDelete = int.Parse(deleteStr);
+
+            if (!string.IsNullOrEmpty(authorName))
+            {
+                model.BlogAuthor = authorName;
+            }
+
+            if (!string.IsNullOrEmpty(blogTitle))
+            {
+                model.BlogTitle = blogTitle;
+            }
+
+            if (!string.IsNullOrEmpty(blogContent))
+            {
+                model.BlogContent = blogContent;
+            }
+
+            if (!string.IsNullOrEmpty(deleteStr))
+            {
+                model.DeleteFlag = isDelete;
+            }
+            db.Entry(model).State = EntityState.Modified;
+            int resp = db.SaveChanges();
+
+            string result = resp == 1 ? "Successfully updated." : "Failed to update!";
+            Console.WriteLine(result);
+        }
+        #endregion
+
+
     }
 }
