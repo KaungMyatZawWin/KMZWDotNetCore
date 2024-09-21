@@ -42,12 +42,16 @@ using System.Data.SqlClient;
 //adoDotNetExample.Delete();
 //adoDotNetExample.Edit();
 
-DapperExample dapperExample = new DapperExample();
+//DapperExample dapperExample = new DapperExample();
 //dapperExample.Read();
 //dapperExample.Create();
 //dapperExample.Update();
 //dapperExample.Delete();
-dapperExample.Edit();
+//dapperExample.Edit();
+
+EFCoreExample efcoreExample = new EFCoreExample();
+//efcoreExample.Read();
+efcoreExample.Create();
 
 
 
