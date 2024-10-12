@@ -11,7 +11,7 @@ namespace KMZWDotNetCore.RestApi.Controllers
     public class BlogsAdoDotNetController : ControllerBase
     {
         private readonly SqlConnectionStringBuilder _connectionStringBuilder = new SqlConnectionStringBuilder()
-        { 
+        {
             DataSource = ".",
             InitialCatalog = "DotNetTrainingBatch5",
             UserID = "sa",
@@ -120,5 +120,24 @@ namespace KMZWDotNetCore.RestApi.Controllers
         }
 
         #endregion
+
+        [HttpDelete("id")]
+        public IActionResult DeleteBlog(int id)
+        {
+            SqlConnection connection = new SqlConnection(_connectionStringBuilder.ConnectionString);
+            connection.Open();
+
+            string queryString = @"DELETE FROM [dbo].[Tbl_Blog]
+                WHERE BlogId = @BlogId";
+            SqlCommand cmd = new SqlCommand(queryString, connection);
+            cmd.Parameters.AddWithValue("@BlogId", id);
+            var model = cmd.ExecuteNonQuery();
+
+            connection.Close();
+
+            var result = model == 1 ? "Successfully Deleted. " : "Faild to Delete";
+
+            return Ok(new { Message = result });
+        }
     }
 }
