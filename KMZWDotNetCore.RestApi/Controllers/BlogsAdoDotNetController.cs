@@ -121,8 +121,10 @@ namespace KMZWDotNetCore.RestApi.Controllers
 
         #endregion
 
-        [HttpDelete("id")]
-        public IActionResult DeleteBlog(int id)
+        #region DeleteMethod
+
+        [HttpDelete("{id}")]
+        public IActionResult DeleteBlog(int id, BlogsViewModel blog)
         {
             SqlConnection connection = new SqlConnection(_connectionStringBuilder.ConnectionString);
             connection.Open();
@@ -139,5 +141,68 @@ namespace KMZWDotNetCore.RestApi.Controllers
 
             return Ok(new { Message = result });
         }
+
+        #endregion
+
+        #region EditMethodWithPatch
+        [HttpPatch("{id}")]
+        public IActionResult EditBlog(int id, BlogsViewModel blog)
+        {
+
+            SqlConnection connection = new SqlConnection(_connectionStringBuilder.ConnectionString);
+            connection.Open();
+
+            string condition = "";
+            if (!string.IsNullOrEmpty(blog.Author))
+            {
+                condition += "[BlogAuthor] = @BlogAuthor, ";
+            }
+            if (!string.IsNullOrEmpty(blog.Title))
+            {
+                condition += "[BlogTitle] = @BlogTitle, ";
+            }
+            if (!string.IsNullOrEmpty(blog.Content))
+            {
+                condition += "[BlogContent] = @BlogContent, ";
+            }
+
+            if (condition.Length < 0)
+            {
+                return BadRequest("Invalid Request!!");
+            }
+
+            condition = condition.Substring(0, condition.Length - 2);
+
+            string queryString = $@"UPDATE [dbo].[Tbl_Blog]
+               SET {condition}
+             WHERE BlogId = @BlogId";
+
+            SqlCommand cmd = new SqlCommand(queryString, connection);
+
+            cmd.Parameters.AddWithValue("@BlogId", id);
+
+            if (!string.IsNullOrEmpty(blog.Author))
+            {
+                cmd.Parameters.AddWithValue("@BlogAuthor", blog.Author);
+            }
+            if (!string.IsNullOrEmpty(blog.Title))
+            {
+                cmd.Parameters.AddWithValue("@BlogTitle", blog.Title);
+            }
+            if (!string.IsNullOrEmpty(blog.Content))
+            {
+                cmd.Parameters.AddWithValue("@BlogContent", blog.Content);
+            }
+
+            var model = cmd.ExecuteNonQuery();
+
+
+            connection.Close();
+
+            var result = model == 1 ? "Siccessfully edited ." : "Failed to Edit";
+
+            return Ok(result);
+        }
+        #endregion
     }
 }
