@@ -85,5 +85,40 @@ namespace KMZWDotNetCore.RestApi.Controllers
         }
 
         #endregion
+
+
+        #region UpdateMethod
+
+        [HttpPut]
+        public IActionResult UpdateBlog(BlogsViewModel blog)
+        {
+
+            SqlConnection connection = new SqlConnection(_connectionStringBuilder.ConnectionString);
+            connection.Open();
+
+            string queryString = @"UPDATE [dbo].[Tbl_Blog]
+               SET [BlogAuthor] = @BlogAuthor
+                  ,[BlogTitle] = @BlogTitle
+                  ,[BlogContent] = @BlogContent
+                  ,[DeleteFlag] = @DeleteFlag
+             WHERE BlogId = @BlogId";
+
+            SqlCommand cmd = new SqlCommand(queryString, connection);
+            cmd.Parameters.AddWithValue("@BlogId", blog.Id);
+            cmd.Parameters.AddWithValue("@BlogAuthor", blog.Author);
+            cmd.Parameters.AddWithValue("@BlogTitle", blog.Title);
+            cmd.Parameters.AddWithValue("@BlogContent", blog.Content);
+            cmd.Parameters.AddWithValue("@DeleteFlag", blog.DeleteFlag);
+
+            var model = cmd.ExecuteNonQuery();
+
+            connection.Close();
+
+            var result = model == 1 ? "Successfully Updated. " : "Failed to update!!";
+
+            return Ok(new { Message = result });
+        }
+
+        #endregion
     }
 }
