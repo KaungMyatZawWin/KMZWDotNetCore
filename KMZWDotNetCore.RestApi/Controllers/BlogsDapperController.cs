@@ -106,5 +106,30 @@ namespace KMZWDotNetCore.RestApi.Controllers
 
         }
         #endregion
+
+        #region DeleteMethod
+        [HttpDelete("{id}")]
+        public IActionResult DeleteBlog(int id)
+        {
+            using (IDbConnection db = new SqlConnection(_connectionStringBuilder.ConnectionString))
+            {
+                string findQuery = "select * from Tbl_Blog where BlogId = @BlogId";
+                var foundBlog = db.QueryFirstOrDefault(findQuery, new { BlogId = id });
+
+                if (foundBlog is null)
+                {
+                    return BadRequest("Blog Not Found");
+                }
+
+                string query = @"DELETE FROM [dbo].[Tbl_Blog]
+                    WHERE BlogId = @BlogId";
+                var model = db.Execute(query, new { BlogId = id });
+
+                string result = model == 1 ? "Successfully deleted.. " : "Failed to delete!!";
+                return Ok(result);
+
+            }
+        }
+        #endregion
     }
 }
