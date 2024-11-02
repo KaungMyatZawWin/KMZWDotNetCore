@@ -14,7 +14,7 @@ namespace KMZWDotNetCore.ConsoleApp
             DataSource = ".",
             InitialCatalog = "DotNetTrainingBatch5",
             UserID = "sa",
-            Password = "sasa@123"
+            Password = "sasa@123",
         };
 
         #region CreateMethod

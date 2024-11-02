@@ -49,12 +49,25 @@ using System.Data.SqlClient;
 //dapperExample.Delete();
 //dapperExample.Edit();
 
-EFCoreExample efcoreExample = new EFCoreExample();
+//EFCoreExample efcoreExample = new EFCoreExample();
 //efcoreExample.Read();
 //efcoreExample.Create();
 //efcoreExample.Edit();
 //efcoreExample.Update();
-efcoreExample.Delete();
+//efcoreExample.Delete();
+
+//AdoDotNetExample2 adoDotNet = new AdoDotNetExample2();
+//adoDotNet.Read();
+//adoDotNet.Edit();
+//adoDotNet.Create();
+
+DapperExample2 dapper = new DapperExample2();
+dapper.Read();
+//dapper.Edit()
+//dapper.Create();
+//dapper.Delete();
+
+
 
 
 

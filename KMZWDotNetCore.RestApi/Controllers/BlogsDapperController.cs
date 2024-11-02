@@ -74,7 +74,7 @@ namespace KMZWDotNetCore.RestApi.Controllers
                 var foundBlog = db.QueryFirstOrDefault<BlogsDataModel>(findquery, new { BlogId = id });
                 if (foundBlog is null)
                 {
-                    return BadRequest("Blog Not Found!!");
+                    return BadRequest("Blog Not Found!! ");
                 }
                 string condition = "";
 
