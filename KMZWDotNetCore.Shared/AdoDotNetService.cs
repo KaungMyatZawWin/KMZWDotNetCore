@@ -65,6 +65,7 @@ namespace KMZWDotNetCore.Shared
             return result;
         }
 
+
         public class SqlParameterModel
         {
             public string Key { get; set; }

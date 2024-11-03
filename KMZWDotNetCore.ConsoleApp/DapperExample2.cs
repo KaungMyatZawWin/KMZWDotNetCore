@@ -93,7 +93,7 @@ namespace KMZWDotNetCore.ConsoleApp
                        ,@BlogContent
                        ,@DeleteFlag)";
 
-                int model =_dapperService.Execute<BlogDataModel>(query, new { BlogAuthor = authorName, BlogTitle = blogTitle, blogContent = blogContent, DeleteFlag = isDelete });
+                int model =_dapperService.Execute<BlogDataModel>(query, new { BlogAuthor = authorName, BlogTitle = blogTitle, BlogContent = blogContent, DeleteFlag = isDelete });
                 string result = model == 1 ? "Successfully Created New Blog. " : "Failed to create!";
 
                 Console.WriteLine(result);
