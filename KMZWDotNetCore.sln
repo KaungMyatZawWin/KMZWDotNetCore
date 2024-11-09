@@ -20,7 +20,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KMZWDotNetCore.Shared", "KM
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KMZWDotNetCore.ServiceRestApi", "KMZWDotNetCore.ServiceRestApi\KMZWDotNetCore.ServiceRestApi.csproj", "{60323F18-0959-4832-B59D-672A328C3BB1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KMZWDotNetCore.MinimalApi", "KMZWDotNetCore.MinimalApi\KMZWDotNetCore.MinimalApi.csproj", "{780F0FAB-1258-4CFC-8536-C5E7F62AA190}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KMZWDotNetCore.MinimalApi", "KMZWDotNetCore.MinimalApi\KMZWDotNetCore.MinimalApi.csproj", "{780F0FAB-1258-4CFC-8536-C5E7F62AA190}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KMZWDotNetCore.BirdMinimalApi", "KMZWDotNetCore.BirdMinimalApi\KMZWDotNetCore.BirdMinimalApi.csproj", "{D9320DF4-0857-4894-A92D-E34A5FF8347B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -56,6 +58,10 @@ Global
 		{780F0FAB-1258-4CFC-8536-C5E7F62AA190}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{780F0FAB-1258-4CFC-8536-C5E7F62AA190}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{780F0FAB-1258-4CFC-8536-C5E7F62AA190}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D9320DF4-0857-4894-A92D-E34A5FF8347B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9320DF4-0857-4894-A92D-E34A5FF8347B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9320DF4-0857-4894-A92D-E34A5FF8347B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9320DF4-0857-4894-A92D-E34A5FF8347B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
