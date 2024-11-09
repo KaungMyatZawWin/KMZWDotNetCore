@@ -18,7 +18,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KMZWDotNetCore.RestApi", "K
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KMZWDotNetCore.Shared", "KMZWDotNetCore.Shared\KMZWDotNetCore.Shared.csproj", "{F6C81A8A-9D53-4DC3-A06D-D09E6F620669}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KMZWDotNetCore.ServiceRestApi", "KMZWDotNetCore.ServiceRestApi\KMZWDotNetCore.ServiceRestApi.csproj", "{60323F18-0959-4832-B59D-672A328C3BB1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KMZWDotNetCore.ServiceRestApi", "KMZWDotNetCore.ServiceRestApi\KMZWDotNetCore.ServiceRestApi.csproj", "{60323F18-0959-4832-B59D-672A328C3BB1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KMZWDotNetCore.MinimalApi", "KMZWDotNetCore.MinimalApi\KMZWDotNetCore.MinimalApi.csproj", "{780F0FAB-1258-4CFC-8536-C5E7F62AA190}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -50,6 +52,10 @@ Global
 		{60323F18-0959-4832-B59D-672A328C3BB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{60323F18-0959-4832-B59D-672A328C3BB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{60323F18-0959-4832-B59D-672A328C3BB1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{780F0FAB-1258-4CFC-8536-C5E7F62AA190}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{780F0FAB-1258-4CFC-8536-C5E7F62AA190}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{780F0FAB-1258-4CFC-8536-C5E7F62AA190}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{780F0FAB-1258-4CFC-8536-C5E7F62AA190}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
