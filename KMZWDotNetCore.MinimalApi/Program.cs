@@ -103,6 +103,7 @@ app.UseHttpsRedirection();
 //    return Results.Ok(model == 1 ? "Successfully deleted." : "Failed to delete!!");
 //});
 
-app.MapBlogEndPoint();
+//app.MapBlogEndPoint();
+app.MapBlogDomainEndPoint();
 
 app.Run();

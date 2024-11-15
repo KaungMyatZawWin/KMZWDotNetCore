@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\KMZWDotNetCore.Database\KMZWDotNetCore.Database.csproj" />
+    <ProjectReference Include="..\KMZWDotNetCore.Domain\KMZWDotNetCore.Domain.csproj" />
   </ItemGroup>
 
 </Project>

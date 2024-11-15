@@ -64,7 +64,6 @@ namespace KMZWDotNetCore.Domain.Features.Blog
 
             return model == 0 ? false : true;
         }
-
         
     }
 }
