@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Http.HttpResults;
 using Newtonsoft.Json;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -46,8 +47,88 @@ app.MapGet("/bird/{id}", (int id) =>
 .WithName("GetById")
 .WithOpenApi();
 
+app.MapPost("/birds", (BirdDataModel requestModel) =>
+{
+    string folderPath = "Data/Birds.json";
+    string jsonStr = File.ReadAllText(folderPath);
+    var result = JsonConvert.DeserializeObject<BirdResponseModel>(jsonStr)!;
+
+    requestModel.Id = result.Tbl_Bird.Count == 0 ? 1 : result.Tbl_Bird.Max(x => x.Id) + 1;
+
+    result.Tbl_Bird.Add(requestModel);
+
+    var jsonStrToWrite = JsonConvert.SerializeObject(result);
+    File.WriteAllText(folderPath, jsonStrToWrite);
+
+    return Results.Ok(requestModel);
+
+});
+
+app.MapPut("/birds/{id}", (int id, BirdDataModel requestModal) =>
+{
+    string filePath = "Data/Birds.json";
+    string jsonStr = File.ReadAllText(filePath);
+
+    var result = JsonConvert.DeserializeObject<BirdResponseModel>(jsonStr)!;
+
+    var foundBird = result.Tbl_Bird.FirstOrDefault(x => x.Id == id);
+    if (foundBird is null)
+    {
+        return Results.BadRequest("No data found!!");
+    }
+
+    foundBird.BirdMyanmarName = requestModal.BirdMyanmarName;
+    foundBird.BirdEnglishName = requestModal.BirdEnglishName;
+    foundBird.Description = requestModal.Description;
+    foundBird.ImagePath = requestModal.ImagePath;
+
+    result.Tbl_Bird.Add(foundBird);
+
+    var jsonToWrite = JsonConvert.SerializeObject(result);
+    File.WriteAllText(filePath, jsonToWrite);
+
+    return Results.Ok(foundBird);
+
+});
+
+app.MapPatch("/birds/{id}", (int id, BirdDataModel requestModel) =>
+{
+    string filePath = "Data/Birds.json";
+    string jsonStr = File.ReadAllText(filePath);
+
+    var result = JsonConvert.DeserializeObject<BirdResponseModel>(jsonStr)!;
+    var foundBird = result.Tbl_Bird.FirstOrDefault(x => x.Id == id);
+    if (foundBird is null)
+    {
+        return Results.BadRequest("No data found!!");
+    }
+
+    if (!string.IsNullOrEmpty(requestModel.BirdMyanmarName))
+    {
+        foundBird.BirdMyanmarName = requestModel.BirdMyanmarName;
+    }
+    if (!string.IsNullOrEmpty(requestModel.BirdEnglishName))
+    {
+        foundBird.BirdEnglishName = requestModel.BirdEnglishName;
+    }
+    if (!string.IsNullOrEmpty(requestModel.Description))
+    {
+        foundBird.Description = requestModel.Description;
+    }
+    if (!string.IsNullOrEmpty(requestModel.ImagePath))
+    {
+        foundBird.ImagePath = requestModel.ImagePath;
+    }
+
+    result.Tbl_Bird.Add(foundBird);
+
+    var jonToWrite = JsonConvert.SerializeObject(result);
+    File.WriteAllText(filePath, jonToWrite);
+
+    return Results.Ok(foundBird);
 
 
+});
 
 app.Run();
 
@@ -55,7 +136,7 @@ app.Run();
 
 public class BirdResponseModel
 {
-    public BirdDataModel[] Tbl_Bird { get; set; }
+    public List<BirdDataModel> Tbl_Bird { get; set; }
 }
 
 public class BirdDataModel
