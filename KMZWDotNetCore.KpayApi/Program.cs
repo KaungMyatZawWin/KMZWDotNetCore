@@ -1,3 +1,4 @@
+using KMZWDotNetCore.KpayApi.EndPoint.Transfer;
 using KMZWDotNetCore.KpayApi.EndPoint.User;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,6 +20,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.MapUserEndPoint();
+app.MapTransactionEndPoint();
 
 app.Run();
 

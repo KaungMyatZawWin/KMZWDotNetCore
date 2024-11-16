@@ -53,6 +53,13 @@ namespace KMZWDotNetCore.KpayDomain.Features.Tranlog
 
             return result;
         }
+
+        public List<TblTranLog> GetAllTransactionHistory()
+        {
+           var model  = _db.TblTranLogs.ToList();
+
+            return model;
+        }
     }
 
 }

@@ -15,8 +15,4 @@
     <ProjectReference Include="..\KMZWDotNetCore.KpayDomain\KMZWDotNetCore.KpayDomain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="EndPoint\Tranlog\" />
-  </ItemGroup>
-
 </Project>
