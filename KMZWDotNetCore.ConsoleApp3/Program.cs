@@ -8,9 +8,14 @@
 //await httpClientExample.UpdateAsync(1,10, "Testing update title", "Testing update body");
 //await httpClientExample.DeleteAsync(1);
 
-RestClientExample restClientExample = new RestClientExample();
+//RestClientExample restClientExample = new RestClientExample();
 //await restClientExample.ReadAsync();
 //await restClientExample.EditAsync(1);
 //await restClientExample.CreateAsync(1, "testing rest", "testing rest body");
 //await restClientExample.UpdateAsync(1, 10, "Testing update title", "Testing update body");
-await restClientExample.DeleteAsync(1);
+//await restClientExample.DeleteAsync(1);
+
+Console.WriteLine("waiting api -----");
+Console.ReadLine();
+RefitExample refitExample = new RefitExample();
+await refitExample.Run();
