@@ -1,19 +1,14 @@
 ﻿using KMZWDotNetCore.Database.Models;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace KMZWDotNetCore.Domain.Features.Blog
 {
-    public class BlogServices : IBlogServices
+    public class BlogServicesV2:IBlogServices
     {
         //private readonly AppDbContext _db = new AppDbContext();
 
         private readonly AppDbContext _db;
-        public BlogServices(AppDbContext db)
+        public BlogServicesV2(AppDbContext db)
         {
             _db = db;
         }

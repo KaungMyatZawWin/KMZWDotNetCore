@@ -7,34 +7,31 @@ namespace KMZWDotNetCore.Database.Models;
 
 public partial class AppDbContext : DbContext
 {
-    public AppDbContext()
-    {
-    }
-
+  
     public AppDbContext(DbContextOptions<AppDbContext> options)
         : base(options)
     {
-    }
+    } 
 
     public virtual DbSet<TblBlog> TblBlogs { get; set; }
 
-    private readonly SqlConnectionStringBuilder _sqlConnectionString = new SqlConnectionStringBuilder()
-    {
-        DataSource = ".",
-        InitialCatalog = "DotNetTrainingBatch5",
-        UserID = "sa",
-        Password = "sasa@123",
-        TrustServerCertificate = true,
+    //private readonly SqlConnectionStringBuilder _sqlConnectionString = new SqlConnectionStringBuilder()
+    //{
+    //    DataSource = ".",
+    //    InitialCatalog = "DotNetTrainingBatch5",
+    //    UserID = "sa",
+    //    Password = "sasa@123",
+    //    TrustServerCertificate = true,
 
-    };
+    //};
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        if (!optionsBuilder.IsConfigured)
-        {
-            optionsBuilder.UseSqlServer(_sqlConnectionString.ConnectionString);
-        }
-    }
+    //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    //{
+    //    if (!optionsBuilder.IsConfigured)
+    //    {
+    //        optionsBuilder.UseSqlServer(_sqlConnectionString.ConnectionString);
+    //    }
+    //}
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

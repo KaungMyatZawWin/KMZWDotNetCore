@@ -38,7 +38,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KMZWDotNetCore.MiniDigitalW
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KMZWDotNetCore.MiniDigitalWalletApi", "KMZWDotNetCore.MiniDigitalWalletApi\KMZWDotNetCore.MiniDigitalWalletApi.csproj", "{62364003-8567-4EB1-A5CB-6EA646DEC631}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KMZWDotNetCore.ConsoleApp3", "KMZWDotNetCore.ConsoleApp3\KMZWDotNetCore.ConsoleApp3.csproj", "{CCC256FF-904D-4B44-B27E-68AF49F0E573}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KMZWDotNetCore.ConsoleApp3", "KMZWDotNetCore.ConsoleApp3\KMZWDotNetCore.ConsoleApp3.csproj", "{CCC256FF-904D-4B44-B27E-68AF49F0E573}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KMZWDotNetCore.RestApi2", "KMZWDotNetCore.RestApi2\KMZWDotNetCore.RestApi2.csproj", "{27514EF4-B629-4A0A-82A1-E11586A8FA8C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -110,6 +112,10 @@ Global
 		{CCC256FF-904D-4B44-B27E-68AF49F0E573}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CCC256FF-904D-4B44-B27E-68AF49F0E573}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CCC256FF-904D-4B44-B27E-68AF49F0E573}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27514EF4-B629-4A0A-82A1-E11586A8FA8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27514EF4-B629-4A0A-82A1-E11586A8FA8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27514EF4-B629-4A0A-82A1-E11586A8FA8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27514EF4-B629-4A0A-82A1-E11586A8FA8C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

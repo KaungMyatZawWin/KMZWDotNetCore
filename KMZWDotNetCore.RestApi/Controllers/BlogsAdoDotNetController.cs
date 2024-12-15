@@ -3,6 +3,7 @@ using KMZWDotNetCore.RestApi.ViewModel;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace KMZWDotNetCore.RestApi.Controllers
 {
@@ -10,14 +11,24 @@ namespace KMZWDotNetCore.RestApi.Controllers
     [ApiController]
     public class BlogsAdoDotNetController : ControllerBase
     {
-        private readonly SqlConnectionStringBuilder _connectionStringBuilder = new SqlConnectionStringBuilder()
+        //private readonly SqlConnectionStringBuilder _connectionStringBuilder = new SqlConnectionStringBuilder()
+        //{
+        //    DataSource = ".",
+        //    InitialCatalog = "DotNetTrainingBatch5",
+        //    UserID = "sa",
+        //    Password = "sasa@123",
+        //    TrustServerCertificate = true
+        //};
+
+        private readonly string _connection;
+
+        public BlogsAdoDotNetController(IConfiguration configuration)
         {
-            DataSource = ".",
-            InitialCatalog = "DotNetTrainingBatch5",
-            UserID = "sa",
-            Password = "sasa@123",
-            TrustServerCertificate = true
-        };
+            _connection = configuration.GetConnectionString("DbConnection")!;
+        }
+
+
+
 
         #region ReadMethod
 
@@ -26,7 +37,7 @@ namespace KMZWDotNetCore.RestApi.Controllers
         {
             List<BlogsViewModel> lst = new List<BlogsViewModel>();
 
-            SqlConnection connection = new SqlConnection(_connectionStringBuilder.ConnectionString);
+            SqlConnection connection = new SqlConnection(_connection);
             connection.Open();
 
             string queryString = @"select * from Tbl_Blog";
@@ -58,7 +69,7 @@ namespace KMZWDotNetCore.RestApi.Controllers
         [HttpPost]
         public IActionResult CreateBlog(BlogsViewModel blog)
         {
-            SqlConnection connection = new SqlConnection(_connectionStringBuilder.ConnectionString);
+            SqlConnection connection = new SqlConnection(_connection);
             connection.Open();
 
             string queryString = @"INSERT INTO [dbo].[Tbl_Blog]
@@ -92,7 +103,7 @@ namespace KMZWDotNetCore.RestApi.Controllers
         public IActionResult UpdateBlog(BlogsViewModel blog)
         {
 
-            SqlConnection connection = new SqlConnection(_connectionStringBuilder.ConnectionString);
+            SqlConnection connection = new SqlConnection(_connection);
             connection.Open();
 
             string queryString = @"UPDATE [dbo].[Tbl_Blog]
@@ -125,7 +136,7 @@ namespace KMZWDotNetCore.RestApi.Controllers
         [HttpDelete("{id}")]
         public IActionResult DeleteBlog(int id, BlogsViewModel blog)
         {
-            SqlConnection connection = new SqlConnection(_connectionStringBuilder.ConnectionString);
+            SqlConnection connection = new SqlConnection(_connection);
             connection.Open();
 
             string queryString = @"DELETE FROM [dbo].[Tbl_Blog]
@@ -148,7 +159,7 @@ namespace KMZWDotNetCore.RestApi.Controllers
         public IActionResult EditBlog(int id, BlogsViewModel blog)
         {
 
-            SqlConnection connection = new SqlConnection(_connectionStringBuilder.ConnectionString);
+            SqlConnection connection = new SqlConnection(_connection);
             connection.Open();
 
             string condition = "";

@@ -1,4 +1,6 @@
 ﻿using KMZWDotNetCore.Domain.Features.Blog;
+using Microsoft.AspNetCore.Mvc;
+using System.Net;
 
 namespace KMZWDotNetCore.MinimalApi.EndPoint.Blog
 {
@@ -8,9 +10,8 @@ namespace KMZWDotNetCore.MinimalApi.EndPoint.Blog
         public static void MapBlogDomainEndPoint(this IEndpointRouteBuilder app)
         {
 
-            app.MapGet("/blogs", () =>
+            app.MapGet("/blogs", ([FromServices] IBlogServices service) =>
             {
-                BlogServices service = new BlogServices();
 
                 var model = service.GetBlogs();
 
@@ -19,19 +20,17 @@ namespace KMZWDotNetCore.MinimalApi.EndPoint.Blog
             .WithName("GetBlogs")
             .WithOpenApi();
 
-            app.MapGet("/blogs/{id}", (int id) =>
+            app.MapGet("/blogs/{id}", ([FromServices] IBlogServices service, int id) =>
             {
-                BlogServices services = new BlogServices();
 
-                var model = services.GetBlog(id);
+                var model = service.GetBlog(id);
                 return Results.Ok(model);
             })
             .WithName("GetBlog")
             .WithOpenApi();
 
-            app.MapPost("/blogs", (TblBlog blog) =>
+            app.MapPost("/blogs", ([FromServices] IBlogServices service, TblBlog blog) =>
             {
-                BlogServices service = new BlogServices();
 
                 var model = service.CreateBlog(blog);
                 return Results.Ok(model);
@@ -39,11 +38,10 @@ namespace KMZWDotNetCore.MinimalApi.EndPoint.Blog
             .WithName("CreateBlog")
             .WithOpenApi();
 
-            app.MapPut("/blogs/{id}", (int id, TblBlog blog) =>
+            app.MapPut("/blogs/{id}", ([FromServices] IBlogServices service, int id, TblBlog blog) =>
             {
-                BlogServices services = new BlogServices();
 
-                var model = services.UpdateBlog(id, blog);
+                var model = service.UpdateBlog(id, blog);
 
                 if (model is null)
                 {
@@ -55,11 +53,10 @@ namespace KMZWDotNetCore.MinimalApi.EndPoint.Blog
             .WithName("UpdateBlog")
             .WithOpenApi();
 
-            app.MapDelete("/blogs/{id}", (int id) =>
+            app.MapDelete("/blogs/{id}", ([FromServices] IBlogServices service, int id) =>
             {
-                BlogServices services = new BlogServices();
 
-                var model = services.DeleteBlog(id);
+                var model = service.DeleteBlog(id);
                 if (model == false)
                 {
                     return Results.BadRequest("Failed to delete!!");

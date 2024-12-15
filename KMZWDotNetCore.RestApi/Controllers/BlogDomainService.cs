@@ -9,13 +9,12 @@ namespace KMZWDotNetCore.RestApi.Controllers
     [ApiController]
     public class BlogDomainService : ControllerBase
     {
-        private readonly BlogServices _blogServices;
+        private readonly IBlogServices _blogServices;
 
-        public BlogDomainService()
+        public BlogDomainService(IBlogServices blogServices)
         {
-            _blogServices = new BlogServices();
+            _blogServices = blogServices;
         }
-
 
         [HttpGet]
         public IActionResult GetBlogs()
