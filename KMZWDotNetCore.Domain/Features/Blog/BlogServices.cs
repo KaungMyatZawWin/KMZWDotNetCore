@@ -26,9 +26,17 @@ namespace KMZWDotNetCore.Domain.Features.Blog
 
         public TblBlog GetBlog(int id)
         {
-            var result = _db.TblBlogs.AsNoTracking().FirstOrDefault(x => x.BlogId == id);
+            var result = _db.TblBlogs.AsNoTracking().FirstOrDefault(x => x.BlogId == id)!;
 
-            return result;
+            TblBlog tblBlog = new TblBlog() { 
+                BlogId = result.BlogId,
+                BlogAuthor = result.BlogAuthor,
+                BlogTitle = result.BlogTitle,
+                BlogContent = result.BlogContent
+
+            };
+
+            return tblBlog;
 
         }
 

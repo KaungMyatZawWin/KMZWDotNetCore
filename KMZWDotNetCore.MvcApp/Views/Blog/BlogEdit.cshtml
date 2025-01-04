@@ -1,0 +1,33 @@
+﻿@model BlogRequestModel
+
+@{
+    ViewData["Title"] = "Edit Blog";
+}
+
+<form method="post" action="/Blog/Update/@(Model.Id)">
+    <div class="d-flex flex-column align-items-center justify-content-center">
+        <div class="mb-3">
+            <label for="txtAuthor" class="form-label">Author</label>
+            <input type="text" class="form-control" id="txtAuthor" name="Author" value="@Model.Author" />
+        </div>
+
+        <div class="mb-3">
+            <label for="txtTitle" class="form-label">Title</label>
+            <input type="text" class="form-control" id="txtTitle" name="Title" value="@Model.Title"/>
+        </div>
+
+        <div class="mb-3">
+            <label for="txtContent" class="form-label">Content</label>
+            <input type="text" class="form-control" id="txtContent" name="Content" value="@Model.Content"/>
+        </div>
+
+        <div>
+            <button type="button" class="btn btn-danger" id="btnCancle">
+                Cancle
+            </button>
+            <button type="submit" class="btn btn-primary" id="btnSubmit">
+                Update
+            </button>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,58 @@
+﻿@model List<TblBlog>
+
+@{
+    bool IsShowMessage = TempData["IsSuccess"] != null;
+
+    bool IsSuccess = false;
+    string Message = "";
+
+    if (IsShowMessage)
+    {
+        IsSuccess = Convert.ToBoolean(TempData["IsSuccess"]);
+        Message = Convert.ToString(TempData["Message"]);
+    }
+}
+
+@if (IsShowMessage)
+{
+    if (IsSuccess)
+    {
+        <div class="alert alert-success" role="alert">
+            @Message
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-danger" role="alert">
+            @Message
+        </div>
+    }
+}
+
+<a href="/Blog/Create" class="btn btn-outline-primary">Create</a>
+<table class="table table-responsive">
+    <thead>
+        <tr>
+            <th>Action</th>
+            <th>Id</th>
+            <th>Author</th>
+            <th>title</th>
+            <th>Content</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var data in Model)
+        {
+            <tr>
+                <td>
+                    <a href="/Blog/Edit/@(data.BlogId)" class="btn btn-warning">Edit</a>
+                    <a href="/Blog/Delete/@(data.BlogId)" class="btn btn-danger">Delete</a>
+                </td>
+                <td>@data.BlogId</td>
+                <td>@data.BlogAuthor</td>
+                <td>@data.BlogTitle</td>
+                <td>@data.BlogContent</td>
+            </tr>
+        }
+    </tbody>
+</table>
