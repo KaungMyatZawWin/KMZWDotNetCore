@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System.Reflection.Metadata;
 
 namespace KMZWDotNetCore.RestApi.Controllers
 {
@@ -41,8 +40,21 @@ namespace KMZWDotNetCore.RestApi.Controllers
         [HttpPost]
         public IActionResult CreateBlogs(TblBlog blog)
         {
-            _db.TblBlogs.Add(blog);
-            _db.SaveChanges();
+            TblBlog tblBLog = new TblBlog()
+            {
+                BlogId = blog.BlogId,
+                BlogAuthor = blog.BlogAuthor,
+                BlogTitle = blog.BlogTitle,
+                BlogContent = blog.BlogContent,
+                DeleteFlag = 0
+            };
+
+            _db.TblBlogs.Add(tblBLog);
+            var result = _db.SaveChanges();
+            if(result <= 0)
+            {
+                return BadRequest();
+            }
 
             return Ok(blog);
         }
@@ -95,7 +107,7 @@ namespace KMZWDotNetCore.RestApi.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult DeleteBlogs(int id, TblBlog blog)
+        public IActionResult DeleteBlogs(int id)
         {
             var item = _db.TblBlogs.AsNoTracking().FirstOrDefault(x => x.BlogId == id);
             if (item is null)

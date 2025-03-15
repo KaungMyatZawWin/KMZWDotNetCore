@@ -26,12 +26,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KMZWDotNetCore.BirdMinimalA
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KMZWDotNetCore.Domain", "KMZWDotNetCore.Domain\KMZWDotNetCore.Domain.csproj", "{1F873458-72B7-4466-A073-FEA1EF8139B0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KMZWDotNetCore.KpayApi", "KMZWDotNetCore.KpayApi\KMZWDotNetCore.KpayApi.csproj", "{D24B989A-5A93-450E-8295-B2779627DCB2}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KMZWDotNetCore.KpayDomain", "KMZWDotNetCore.KpayDomain\KMZWDotNetCore.KpayDomain.csproj", "{AD1A485D-E8E8-42AE-91A0-31B31EE9B298}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KMZWDotNetCore.KpayDatabase", "KMZWDotNetCore.KpayDatabase\KMZWDotNetCore.KpayDatabase.csproj", "{88E3EA91-E7E1-4A87-A053-18A0A7340412}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KMZWDotNetCore.MiniDigitalWalletDatabase", "KMZWDotNetCore.MiniDigitalWalletDatabase\KMZWDotNetCore.MiniDigitalWalletDatabase.csproj", "{EA7D9992-1D7C-487A-941B-69BEE20744C5}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KMZWDotNetCore.MiniDigitalWalletDomain", "KMZWDotNetCore.MiniDigitalWalletDomain\KMZWDotNetCore.MiniDigitalWalletDomain.csproj", "{57E5CD6A-517D-4333-A5FC-0E3CDC5805FB}"
@@ -42,7 +36,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KMZWDotNetCore.ConsoleApp3"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KMZWDotNetCore.RestApi2", "KMZWDotNetCore.RestApi2\KMZWDotNetCore.RestApi2.csproj", "{27514EF4-B629-4A0A-82A1-E11586A8FA8C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KMZWDotNetCore.MvcApp", "KMZWDotNetCore.MvcApp\KMZWDotNetCore.MvcApp.csproj", "{45BBA26D-EE11-4C20-991B-B74E4606E1A5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KMZWDotNetCore.MvcApp", "KMZWDotNetCore.MvcApp\KMZWDotNetCore.MvcApp.csproj", "{45BBA26D-EE11-4C20-991B-B74E4606E1A5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KMZWDotNetCore.BlazorWasm", "KMZWDotNetCore.BlazorWasm\KMZWDotNetCore.BlazorWasm.csproj", "{01BB527B-1AD7-45B8-BA40-63C92A032457}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -86,18 +82,6 @@ Global
 		{1F873458-72B7-4466-A073-FEA1EF8139B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1F873458-72B7-4466-A073-FEA1EF8139B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1F873458-72B7-4466-A073-FEA1EF8139B0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D24B989A-5A93-450E-8295-B2779627DCB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D24B989A-5A93-450E-8295-B2779627DCB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D24B989A-5A93-450E-8295-B2779627DCB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D24B989A-5A93-450E-8295-B2779627DCB2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AD1A485D-E8E8-42AE-91A0-31B31EE9B298}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AD1A485D-E8E8-42AE-91A0-31B31EE9B298}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AD1A485D-E8E8-42AE-91A0-31B31EE9B298}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AD1A485D-E8E8-42AE-91A0-31B31EE9B298}.Release|Any CPU.Build.0 = Release|Any CPU
-		{88E3EA91-E7E1-4A87-A053-18A0A7340412}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{88E3EA91-E7E1-4A87-A053-18A0A7340412}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{88E3EA91-E7E1-4A87-A053-18A0A7340412}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{88E3EA91-E7E1-4A87-A053-18A0A7340412}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EA7D9992-1D7C-487A-941B-69BEE20744C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EA7D9992-1D7C-487A-941B-69BEE20744C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EA7D9992-1D7C-487A-941B-69BEE20744C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -122,6 +106,10 @@ Global
 		{45BBA26D-EE11-4C20-991B-B74E4606E1A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{45BBA26D-EE11-4C20-991B-B74E4606E1A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{45BBA26D-EE11-4C20-991B-B74E4606E1A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01BB527B-1AD7-45B8-BA40-63C92A032457}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01BB527B-1AD7-45B8-BA40-63C92A032457}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01BB527B-1AD7-45B8-BA40-63C92A032457}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01BB527B-1AD7-45B8-BA40-63C92A032457}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

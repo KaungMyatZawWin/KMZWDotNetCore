@@ -3,6 +3,19 @@ using KMZWDotNetCore.Domain.Features.Blog;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: MyAllowSpecificOrigins,
+                      policy =>
+                      {
+                          policy.WithOrigins("https://localhost:7213",
+                                              "http://localhost:5103")
+                          .WithMethods("GET", "POST", "PUT", "PATCH", "DELETE")
+                          .AllowAnyHeader();
+                      });
+});
 
 // Add services to the container.
 
@@ -29,6 +42,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors(MyAllowSpecificOrigins);
 
 app.UseAuthorization();
 

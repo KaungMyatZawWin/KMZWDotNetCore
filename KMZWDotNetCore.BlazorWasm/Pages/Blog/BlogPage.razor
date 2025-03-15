@@ -1,0 +1,87 @@
+﻿@page "/blog"
+@inject HttpClient httpClient
+@inject NavigationManager navigation
+@inject IJSRuntime jsRunTime
+
+<PageTitle>Blog List</PageTitle>
+
+<NavLink href="blog/create" class="btn btn-outline-primary">New</NavLink>
+
+<table class="table table-responsive">
+    <thead>
+        <tr>
+            <th>Action</th>
+            <th>Id</th>
+            <th>Author</th>
+            <th>title</th>
+            <th>Content</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var data in _blogModel)
+        {
+            var route = $"/blog/edit/{data.BlogId}";
+            <tr>
+                <td>
+                    <NavLink href="@route" class="btn btn-outline-warning">Edit</NavLink>
+                    <button class="btn btn-outline-danger" @onclick="()=> HandleDelete(data.BlogId)">Delete</button>
+
+                </td>
+                <td>@data.BlogId</td>
+                <td>@data.BlogAuthor</td>
+                <td>@data.BlogTitle</td>
+                <td>@data.BlogContent</td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+
+@code {
+    private List<BlogModel> _blogModel = new List<BlogModel>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        await List();
+    }
+
+    private async Task List()
+    {
+        var response = await httpClient.GetAsync("api/Blogs");
+        if (response is not null)
+        {
+            var jsonString = await response.Content.ReadAsStringAsync();
+            _blogModel = JsonConvert.DeserializeObject<List<BlogModel>>(jsonString)!;
+        }
+    }
+
+    private async Task HandleDelete(int id)
+    {
+        bool confirm = await jsRunTime.InvokeAsync<bool>("confirm", "Are you sure want to delete this blog?");
+
+        if (!confirm) return;
+
+            var response = await httpClient.DeleteAsync($"/api/Blogs/{id}");
+
+            if (response.IsSuccessStatusCode)
+            {
+
+                await jsRunTime.InvokeVoidAsync("alert", "Successfully delete blog!");
+                await List();
+            }
+        
+
+
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+
+        };
+    }
+
+
+}
